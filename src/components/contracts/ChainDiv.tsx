@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { ChainApi } from "../../apis/ChainApi";
 import { TableDiv } from "../utils/TableDiv";
 
-
 export function ChainListDiv() {
     const [chainList, setChainList] = useState<any[]>([])
     useEffect(() => {
@@ -10,7 +9,6 @@ export function ChainListDiv() {
             .then(res => {
                 setChainList(
                     res.data.map((item) => {
-                        console.log(item)
                         return {
                             id: item.chainSeq,
                             name: item.chainName,
