@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
-import { ContractsDiv } from './components/contracts/ContractsDiv';
+import { ContractListDiv } from './components/contracts/ContractsDiv';
 
 function App() {
   const [obj, setObj] = useState<any>()
@@ -26,7 +26,7 @@ function App() {
       <button onClick={onClickApiCall}> PRINT </button>
       {obj && <p> {Object(obj).toString()}</p>}
       <hr/>
-      <ContractsDiv/>
+      <ContractListDiv/>
     </div>
     
   );

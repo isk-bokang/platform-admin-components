@@ -1,23 +1,31 @@
 
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { targURL } from "../../contants/constants";
-import { expressOpt, TableDiv } from "../utils/TableDiv";
+import { ContractApi } from "../../apis/ContractApi";
 
-export function ContractsDiv(){
+import { TableDiv } from "../utils/TableDiv";
+
+export function ContractListDiv() {
     const [contractList, setContractList] = useState<any[]>([])
-    const viewOption : expressOpt = {
-        excludes : ["abi", "bytecode"]
-    }
-    useEffect( ()=>{
-        axios.get(targURL + "/contracts")
-        .then((value =>{
-            setContractList(value.data)
-        }))
-    }, [] )
 
-    return(<div>
-        {contractList.length !== 0 && <TableDiv targList={contractList} opt = {viewOption}  /> }
+    useEffect(() => {
+        ContractApi.getContractList()
+            .then(res => {
+                setContractList(
+                    res.data.map((item) => {
+                        return {
+                            id: item.id,
+                            name: item.name,
+                            contractType: item.contractType
+                        }
+                    })
+                )
+            })
+    }, [])
+
+    return (<div>
+        {contractList.length !== 0 && <TableDiv targList={contractList} />}
     </div>)
 
 }
+

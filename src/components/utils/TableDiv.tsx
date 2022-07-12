@@ -2,8 +2,8 @@ import { useEffect, useState } from "react"
 
 
 
-export type expressOpt = { excludes?: string[] }
-type tableProps = { targList: any[], opt?: expressOpt }
+
+type tableProps = { targList: any[] }
 
 
 export function TableDiv(prop: tableProps) {
@@ -11,17 +11,8 @@ export function TableDiv(prop: tableProps) {
 
     useEffect(() => {
         let tmpKeys: string[] = []
-
         tmpKeys = tmpKeys.concat(Object.keys(prop.targList[0]))
-        console.log(tmpKeys)
-        if (prop.opt?.excludes) {
-            tmpKeys = tmpKeys.filter((val) => {
-                if (!prop.opt?.excludes?.includes(val))
-                    return val
-            })
-        }
         setKeys(tmpKeys)
-        console.log("ret", tmpKeys)
     }, [])
 
     return (
