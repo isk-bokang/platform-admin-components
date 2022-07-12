@@ -10,9 +10,10 @@ export function ChainListDiv() {
             .then(res => {
                 setChainList(
                     res.data.map((item) => {
+                        console.log(item)
                         return {
-                            id: item.id,
-                            name: item.name,
+                            id: item.chainSeq,
+                            name: item.chainName,
                             chainId: item.chainId,
                             rpcUrl: item.rpcUrl
                         }

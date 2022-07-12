@@ -4,19 +4,19 @@ import axios from "axios";
 const targURL = "http://localhost:8090"
 
 class GetChainDto {
-    readonly id: string;
-    readonly name: string;
+    readonly chainSeq: string;
+    readonly chainName: string;
     readonly chainId: string;
     readonly rpcUrl: string;
 
     constructor(
-        id: string,
-        name: string,
+        chainSeq: string,
+        chainName: string,
         chainId: string,
         rpcUrl: string
     ) {
-        this.id = id
-        this.name = name
+        this.chainSeq = chainSeq
+        this.chainName = chainName
         this.chainId = chainId
         this.rpcUrl = rpcUrl
     }

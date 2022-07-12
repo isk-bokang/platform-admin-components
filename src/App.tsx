@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 import { ContractListDiv } from './components/contracts/ContractsDiv';
+import { ChainListDiv } from './components/contracts/ChainDiv';
 
 function App() {
   const [obj, setObj] = useState<any>()
@@ -27,6 +28,8 @@ function App() {
       {obj && <p> {Object(obj).toString()}</p>}
       <hr/>
       <ContractListDiv/>
+      <hr/>
+      <ChainListDiv/>
     </div>
     
   );
