@@ -1,25 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
+import { ContractsDiv } from './components/contracts/ContractsDiv';
 
 function App() {
+  const [obj, setObj] = useState<any>()
+
+
+  function onClickApiCall(){
+    axios.get("http://localhost:8090/contracts/")
+    .then( (value)=>{
+      console.log(value)
+      setObj(value.data)
+    } )
+    .catch( (err)=>{
+      console.error(err)
+    })
+
+
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={onClickApiCall}> PRINT </button>
+      {obj && <p> {Object(obj).toString()}</p>}
+      <hr/>
+      <ContractsDiv/>
     </div>
+    
   );
 }
 
