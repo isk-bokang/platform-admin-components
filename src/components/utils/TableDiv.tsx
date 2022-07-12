@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react"
 
-
-
-
 type tableProps = { targList: any[] }
-
 
 export function TableDiv(prop: tableProps) {
     const [keys, setKeys] = useState<string[]>([])
@@ -13,7 +9,7 @@ export function TableDiv(prop: tableProps) {
         let tmpKeys: string[] = []
         tmpKeys = tmpKeys.concat(Object.keys(prop.targList[0]))
         setKeys(tmpKeys)
-    }, [])
+    }, [prop.targList])
 
     return (
         <div>

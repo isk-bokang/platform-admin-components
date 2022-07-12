@@ -1,9 +1,6 @@
-
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { ContractApi } from "../../apis/ContractApi";
-
-import { TableDiv } from "../utils/TableDiv";
+import { useEffect, useState } from "react"
+import { ContractApi } from "../../apis/ContractApi"
+import { TableDiv } from "../utils/TableDiv"
 
 export function ContractListDiv() {
     const [contractList, setContractList] = useState<any[]>([])
@@ -28,4 +25,3 @@ export function ContractListDiv() {
     </div>)
 
 }
-
