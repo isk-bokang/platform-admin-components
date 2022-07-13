@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { ContractDeployApi, DeployedContractDto } from "../../apis/ContractDeployApi";
+import { RadioTargListDiv } from "../utils/InputDiv";
 import { TargListView } from "../utils/OutputDiv";
 
 export function DeployedContractsRouter() {
@@ -46,7 +47,30 @@ export function DeployedContractListDiv() {
 
 
     return (<div>
-        {deployedContractList.length !== 0 && <TargListView targList={deployedContractList} />}
+        {deployedContractList.length !== 0 && <RadioTargListDiv targList={deployedContractList} setTarg={function (value: any): void {
+            throw new Error("Function not implemented.");
+        } } />}
     </div>)
 
 }
+
+
+export function ContractDeployDiv(){
+    const [contract, setContract] = useState<any>()
+    const [service, setService] = useState<any>()
+    const [chain, setChain] = useState<any>()
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+

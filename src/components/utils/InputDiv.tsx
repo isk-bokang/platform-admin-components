@@ -16,7 +16,7 @@ export function InputTargDiv(prop: targProps) {
 
     function onChangeHandle(e: React.ChangeEvent<HTMLTextAreaElement>) {
         prop.targ[e.target.id] = e.target.value
-        prop.setTarg( prop.targ )
+        prop.setTarg(prop.targ)
     }
 
     return (
@@ -26,9 +26,9 @@ export function InputTargDiv(prop: targProps) {
                     {
                         keys.map(key => {
                             return (
-                                <tr key = {key+'_tr'}>
+                                <tr key={key + '_tr'}>
                                     <th id={key + '_th'}>{key}</th>
-                                    <td id={key + 'td'} key={key + 'td'}> <textarea id={key}  onChange={onChangeHandle} /> </td>
+                                    <td id={key + 'td'} key={key + 'td'}> <textarea id={key} onChange={onChangeHandle} /> </td>
                                 </tr>
                             )
                         })}
@@ -38,3 +38,50 @@ export function InputTargDiv(prop: targProps) {
     )
 
 }
+
+
+type radioProp = { targList: any[], setTarg: Dispatch<SetStateAction<any>> }
+
+export function RadioTargListDiv(prop: radioProp) {
+    const [keys, setKeys] = useState<string[]>([])
+
+    useEffect(() => {
+        let tmpKeys: string[] = []
+        setKeys(tmpKeys.concat(Object.keys(prop.targList[0])))
+
+    }, [prop.targList])
+    return (
+        <div>
+            <table>
+                <thead>
+                    <th> select </th>
+                    {
+                        keys.map(key => {
+                            return (<th> {key} </th>)
+                        })
+                    }
+                </thead>
+                <tbody>
+                {
+                        prop.targList.map( (val, idx)=>{
+                            return <tr >
+                                <td id={val}>
+                                    <input type="radio" name="radiobtn"/>
+                                </td>
+                                {Object.entries(val).map((entry) =>{
+                                    return(
+                                        <td> {entry[1] as string} </td>
+                                    )
+                                })}
+
+                            </tr>
+                        } )
+                    }
+                </tbody>
+            </table>
+        </div>
+    )
+
+}
+
+
