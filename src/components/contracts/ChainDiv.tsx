@@ -13,8 +13,15 @@ export function ChainsRouter(){
     )
 }
 
+export interface ListViewChain {
+    id: string
+    name: string
+    chainId: string
+    rpcUrl: string
+}
+
 export function ChainListDiv() {
-    const [chainList, setChainList] = useState<any[]>([])
+    const [chainList, setChainList] = useState<ListViewChain[]>([])
     useEffect(() => {
         ChainApi.getChainList()
             .then(res => {

@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from "react";
 
 
 
@@ -40,16 +40,23 @@ export function InputTargDiv(prop: targProps) {
 }
 
 
-type radioProp = { targList: any[], setTarg: Dispatch<SetStateAction<any>> }
+type radioProp = { targList: any[], setTarg: Dispatch<SetStateAction<number>> }
 
 export function RadioTargListDiv(prop: radioProp) {
     const [keys, setKeys] = useState<string[]>([])
-
+    const groupNumber = Math.random()
     useEffect(() => {
         let tmpKeys: string[] = []
         setKeys(tmpKeys.concat(Object.keys(prop.targList[0])))
 
     }, [prop.targList])
+
+    function onChangeHandle(e : ChangeEvent<HTMLInputElement>){
+        prop.setTarg(parseInt(e.target.value))
+        
+    }
+
+
     return (
         <div>
             <table>
@@ -66,7 +73,7 @@ export function RadioTargListDiv(prop: radioProp) {
                         prop.targList.map( (val, idx)=>{
                             return <tr >
                                 <td id={val}>
-                                    <input type="radio" name="radiobtn"/>
+                                    <input onChange={onChangeHandle} type="radio" name={`${groupNumber}`} value={`${val.id}`}/>
                                 </td>
                                 {Object.entries(val).map((entry) =>{
                                     return(

@@ -11,7 +11,7 @@ export function ServicesRouter() {
     )
 }
 
-interface Services {
+export interface ListViewService {
     id: string
     name: string
     category: string
@@ -20,7 +20,7 @@ interface Services {
 
 
 export function ServiceListDiv() {
-    const [serviceList, setServiceList] = useState<Services[]>([])
+    const [serviceList, setServiceList] = useState<ListViewService[]>([])
     useEffect(() => {
         ServiceApi.getServices()
             .then(res => {

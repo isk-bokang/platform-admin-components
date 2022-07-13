@@ -14,14 +14,14 @@ export function ContractsRouter() {
     )
 }
 
-interface contractList {
+export interface ListViewContract {
     id : string
     name : string
     contractType : string
 }
 
 export function ContractListDiv() {
-    const [contractList, setContractList] = useState<contractList[]>([])
+    const [contractList, setContractList] = useState<ListViewContract[]>([])
 
     useEffect(() => {
         ContractApi.getContractList()
