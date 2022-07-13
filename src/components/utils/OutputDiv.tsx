@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
 type listProps = { targList: any[] }
 
@@ -23,16 +24,17 @@ export function TargListView(prop: listProps) {
                 </thead>
                 <tbody>
                     {
-                        prop.targList.map( (val)=>{
+                        prop.targList.map( (val, idx)=>{
                             return <tr>
+                                
                                 {Object.entries(val).map((entry) =>{
-                                    
                                     return(
                                         <td>
-                                            <a href="#contract">{entry[1] as string}</a>
+                                            <Link to={`${val[keys[0]]}`}>{entry[1] as string}</Link>
                                         </td>
                                     )
                                 })}
+
                             </tr>
                         } )
                     }
@@ -58,12 +60,12 @@ export function TargView(prop: targProps){
 
     return (
         <div>
-            <table>{
+            <table border={1} style={{alignItems : "left"} }>{
                 keys.map(key => {
                     return (
                         <tr>
                             <th>{key}</th>
-                            <td>{prop.targ[key]}</td>
+                            <td align={"left"}>{prop.targ[key]}</td>
                         </tr>
                 )
             } )}
