@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const targURL = "http://localhost:8090"
+const targURL = "http://localhost:8090/chains"
 
 export class GetChainDto {
     readonly chainSeq: string;
@@ -24,9 +24,9 @@ export class GetChainDto {
 
 export class ChainApi {
     static getChainList() {
-        return axios.get<GetChainDto[]>(`${targURL}/chains`)
+        return axios.get<GetChainDto[]>(`${targURL}`)
     }
     static getChain(chainSeq : string){
-        return axios.get<GetChainDto>(`${targURL}/chains/${chainSeq}`)
+        return axios.get<GetChainDto>(`${targURL}/${chainSeq}`)
     }
 }
