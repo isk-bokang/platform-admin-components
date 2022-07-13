@@ -25,12 +25,39 @@ class GetContractDto {
     }
 }
 
+export class PostContractDto {
+    name: string = '';
+    contractType: string = '';
+    abi: string = '';
+    bytecode: string = '';
+
+    constructor(
+        name: string = "",
+        contractType: string = "",
+        abi: string = "",
+        bytecode: string = ""
+    ) {
+        this.name = name
+        this.contractType = contractType
+        this.abi = abi
+        this.bytecode = bytecode
+    }
+}
+
+
+
+
 export class ContractApi {
     static getContractList() {
         return axios.get<GetContractDto[]>(`${targURL}/contracts`)
     }
-    static getContract(contractId : string){
+    static getContract(contractId: string) {
         return axios.get<GetContractDto>(`${targURL}/contracts/${contractId}`)
     }
+    static postContract(data : PostContractDto){
+        return axios.post<GetContractDto>(`${targURL}/contracts`, data)
+    }
+
+
 }
 
