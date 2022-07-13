@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Route, Routes, useParams } from "react-router-dom"
-import { ContractApi } from "../../apis/ContractApi"
+import { ContractApi, PostContractDto } from "../../apis/ContractApi"
+import { InputTargDiv } from "../utils/InputDiv"
 import { TargListView, TargView } from "../utils/OutputDiv"
 
 export function ContractsRouter() {
@@ -8,7 +9,7 @@ export function ContractsRouter() {
         <Routes>
             <Route path="/" element={<ContractListDiv />} />
             <Route path="/:contractId" element={<ContractDiv />} />
-            <Route path="/asd" element={<ContractDiv />} />
+            <Route path="/add" element={<ContractRegisterDiv />} />
         </Routes>
     )
 }
@@ -62,3 +63,22 @@ export function ContractDiv() {
         {contract && <TargView targ={contract}/>}
     </div>)
 }
+
+export function ContractRegisterDiv(){
+    const [postContract , setPostContract] = useState<PostContractDto>(new PostContractDto())
+    function onClickRegisterHandle(){
+        ContractApi.postContract(postContract)
+        .then(res =>{
+            window.location.href = `${res.data.id}`
+        })
+    }
+
+    return(
+        <div>
+            { <InputTargDiv targ={postContract} setTarg={setPostContract}/>}
+            { <button onClick={onClickRegisterHandle}> Register </button>}
+        </div>
+    )
+
+}
+

@@ -44,9 +44,6 @@ export class PostContractDto {
     }
 }
 
-
-
-
 export class ContractApi {
     static getContractList() {
         return axios.get<GetContractDto[]>(`${targURL}/contracts`)
@@ -57,7 +54,5 @@ export class ContractApi {
     static postContract(data : PostContractDto){
         return axios.post<GetContractDto>(`${targURL}/contracts`, data)
     }
-
-
 }
 
