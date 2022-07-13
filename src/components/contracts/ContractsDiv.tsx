@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Route, Routes, useParams } from "react-router-dom"
-import { ContractApi, PostContractDto } from "../../apis/ContractApi"
+import { ContractApi, GetContractDto, PostContractDto } from "../../apis/ContractApi"
 import { InputTargDiv } from "../utils/InputDiv"
 import { TargListView, TargView } from "../utils/OutputDiv"
 
@@ -14,9 +14,14 @@ export function ContractsRouter() {
     )
 }
 
+interface contractList {
+    id : string
+    name : string
+    contractType : string
+}
 
 export function ContractListDiv() {
-    const [contractList, setContractList] = useState<any[]>([])
+    const [contractList, setContractList] = useState<contractList[]>([])
 
     useEffect(() => {
         ContractApi.getContractList()
@@ -41,7 +46,7 @@ export function ContractListDiv() {
 
 export function ContractDiv() {
     const { contractId } = useParams();
-    const [contract, setContract] = useState<any>()
+    const [contract, setContract] = useState<GetContractDto>()
 
     useEffect(() => {
         if (contractId != null){

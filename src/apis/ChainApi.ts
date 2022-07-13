@@ -3,7 +3,7 @@ import axios from "axios";
 
 const targURL = "http://localhost:8090"
 
-class GetChainDto {
+export class GetChainDto {
     readonly chainSeq: string;
     readonly chainName: string;
     readonly chainId: string;
