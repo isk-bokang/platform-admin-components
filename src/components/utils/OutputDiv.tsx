@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react"
 
-type tableProps = { targList: any[] }
+type listProps = { targList: any[] }
 
-export function TableDiv(prop: tableProps) {
+export function TargListView(prop: listProps) {
     const [keys, setKeys] = useState<string[]>([])
 
     useEffect(() => {
         let tmpKeys: string[] = []
-        tmpKeys = tmpKeys.concat(Object.keys(prop.targList[0]))
-        setKeys(tmpKeys)
+        setKeys(tmpKeys.concat(Object.keys(prop.targList[0])))
+        
     }, [prop.targList])
 
     return (
@@ -27,10 +27,9 @@ export function TableDiv(prop: tableProps) {
                             return <tr>
                                 {Object.entries(val).map((entry) =>{
                                     
-                                    if(keys.includes(entry[0]))
                                     return(
                                         <td>
-                                            {entry[1] as string}
+                                            <a href="#contract">{entry[1] as string}</a>
                                         </td>
                                     )
                                 })}
@@ -45,3 +44,33 @@ export function TableDiv(prop: tableProps) {
     )
 
 }
+
+type targProps = {targ : any}
+
+export function TargView(prop: targProps){
+    const [keys, setKeys] = useState<string[]>([])
+
+    useEffect(() => {
+        let tmpKeys: string[] = []
+        tmpKeys = tmpKeys.concat(Object.keys(prop.targ))
+        setKeys(tmpKeys)
+    }, [prop.targ])
+
+    return (
+        <div>
+            <table>{
+                keys.map(key => {
+                    return (
+                        <tr>
+                            <th>{key}</th>
+                            <td>{prop.targ[key]}</td>
+                        </tr>
+                )
+            } )}
+            </table>
+        </div>
+    )
+
+
+}
+

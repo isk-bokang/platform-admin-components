@@ -3,7 +3,7 @@ import axios from "axios";
 
 const targURL = "http://localhost:8090"
 
-class GetContractsDto {
+class GetContractDto {
     readonly id: string;
     readonly name: string;
     readonly contractType: string;
@@ -27,7 +27,10 @@ class GetContractsDto {
 
 export class ContractApi {
     static getContractList() {
-        return axios.get<GetContractsDto[]>(`${targURL}/contracts`)
+        return axios.get<GetContractDto[]>(`${targURL}/contracts`)
+    }
+    static getContract(contractId : string){
+        return axios.get<GetContractDto>(`${targURL}/contracts/${contractId}`)
     }
 }
 

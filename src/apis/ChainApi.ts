@@ -26,4 +26,7 @@ export class ChainApi {
     static getChainList() {
         return axios.get<GetChainDto[]>(`${targURL}/chains`)
     }
+    static getChain(chainSeq : string){
+        return axios.get<GetChainDto>(`${targURL}/chains/${chainSeq}`)
+    }
 }

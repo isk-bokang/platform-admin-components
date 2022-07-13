@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ChainApi } from "../../apis/ChainApi";
-import { TableDiv } from "../utils/TableDiv";
+import { TargListView } from "../utils/OutputDiv";
 
 export function ChainListDiv() {
     const [chainList, setChainList] = useState<any[]>([])
@@ -21,6 +21,6 @@ export function ChainListDiv() {
     }, [])
 
     return (<div>
-        {chainList.length !== 0 && <TableDiv targList={chainList} />}
+        {chainList.length !== 0 && <TargListView targList={chainList} />}
     </div>)
 }
