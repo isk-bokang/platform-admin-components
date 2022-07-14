@@ -3,6 +3,11 @@ import axios from "axios";
 
 const targURL = "http://localhost:8090/contracts"
 
+export interface Abi{
+    inputs : {name : string, type : string, internalType : string}[],
+    type : string
+}
+
 export class GetContractDto {
     readonly id: string;
     readonly name: string;

@@ -7,7 +7,7 @@ export function ChainsRouter(){
     return (
         <Routes>
             <Route path="/" element={<ChainListDiv />} />
-            <Route path="/:chainSeq" element={<ContractDiv />} />
+            <Route path="/:chainSeq" element={<ChainDiv />} />
            
         </Routes>
     )
@@ -43,9 +43,9 @@ export function ChainListDiv() {
     </div>)
 }
 
-export function ContractDiv() {
+export function ChainDiv() {
     const { chainSeq } = useParams();
-    const [chain, setChain] = useState<any>()
+    const [chain, setChain] = useState<ListViewChain>()
 
     useEffect(() => {
         if (chainSeq != null){
@@ -59,6 +59,29 @@ export function ContractDiv() {
                     })
                 })}
     }, [chainSeq])
+
+
+    return (
+    <div id="chain">
+        {chain && <TargView targ={chain}/>}
+    </div>)
+}
+
+export function ChainByPropDiv(prop : {chainSeq : string}) {
+    const [chain, setChain] = useState<ListViewChain>()
+
+    useEffect(() => {
+        if (prop.chainSeq != null){
+            ChainApi.getChain(prop.chainSeq)
+                .then(res => {
+                    setChain({
+                        id: res.data.chainSeq,
+                        chainId: res.data.chainId,
+                        name: res.data.chainName,
+                        rpcUrl : res.data.rpcUrl,
+                    })
+                })}
+    }, [prop.chainSeq])
 
 
     return (

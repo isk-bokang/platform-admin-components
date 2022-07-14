@@ -40,7 +40,7 @@ export function InputTargDiv(prop: targProps) {
 }
 
 
-type radioProp = { targList: any[], setTarg: Dispatch<SetStateAction<number>> }
+type radioProp = { targList: any[], setTarg: Dispatch<SetStateAction<string>> }
 
 export function RadioTargListDiv(prop: radioProp) {
     const [keys, setKeys] = useState<string[]>([])
@@ -52,7 +52,7 @@ export function RadioTargListDiv(prop: radioProp) {
     }, [prop.targList])
 
     function onChangeHandle(e : ChangeEvent<HTMLInputElement>){
-        prop.setTarg(parseInt(e.target.value))
+        prop.setTarg(e.target.value)
         
     }
 

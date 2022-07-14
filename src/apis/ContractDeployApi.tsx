@@ -27,9 +27,34 @@ export class DeployedContractDto {
     }
 }
 
+class DeployRequestDto{
+    readonly serviceId : string
+    readonly contractId : string
+    readonly chainSeq : string
+    readonly deployParams : string[]
+
+    constructor(serviceId : string,
+        contractId : string,
+        chainSeq : string,
+        deployParam : string[]){
+            this.serviceId = serviceId
+            this.contractId = contractId
+            this.chainSeq = chainSeq
+            this.deployParams = deployParam
+        }
+}
+
+
 export class ContractDeployApi {
     static getDeployedContracts(){
         return axios.get<DeployedContractDto[]>(`${targURL}`)
     }
+    static deployContract(req : DeployRequestDto){
+        console.log(req)
+        return axios.post<DeployedContractDto>(`${targURL}`, req)
+    }
+
+
+
 }
 

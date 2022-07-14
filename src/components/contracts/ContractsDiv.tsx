@@ -69,6 +69,29 @@ export function ContractDiv() {
     </div>)
 }
 
+export function ContractByPropDiv(prop : {contractId : string}) {
+
+    const [contract, setContract] = useState<any>()
+
+    useEffect(() => {
+        if (prop.contractId != null){
+            ContractApi.getContract(prop.contractId)
+                .then(res => {
+                    setContract({
+                        id: res.data.id,
+                        name: res.data.name,
+                        contractType: res.data.contractType
+                    })
+                })}
+    }, [prop.contractId])
+
+
+    return (
+    <div id="contract">
+        {contract && <TargView targ={contract}/>}
+    </div>)
+}
+
 export function ContractRegisterDiv(){
     const [postContract , setPostContract] = useState<PostContractDto>(new PostContractDto())
     function onClickRegisterHandle(){

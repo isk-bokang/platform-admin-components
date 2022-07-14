@@ -23,4 +23,7 @@ export class ServiceApi{
     static getServices(){
         return axios.get<GetServiceDto[]>(`${targURL}`)
     }
+    static getService(serviceId : string){
+        return axios.get<GetServiceDto>(`${targURL}/${serviceId}`)
+    }
 }
